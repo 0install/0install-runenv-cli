@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<interface xmlns="http://zero-install.sourceforge.net/2004/injector/interface">
+  <name>0install-runenv-cli</name>
+  <summary>0install .NET helper for Windows</summary>
+  <description>
+    When 0install needs to add a new program to %PATH% on Windows, it uses this
+    package to creates a .NET launcher application.
+</description>
+
+  <homepage>http://0install.net/</homepage>
+
+  <feed-for interface="http://0install.net/2012/interfaces/0install-runenv-cli.xml"/>
+  <category>System</category>
+
+  <group license="OSI Approved :: GNU Lesser General Public License (LGPL)">
+    <implementation id="." version="1.11-post"/>
+  </group>
+</interface>
