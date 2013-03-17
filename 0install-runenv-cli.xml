@@ -14,6 +14,6 @@
   <category>System</category>
 
   <group license="OSI Approved :: GNU Lesser General Public License (LGPL)">
-    <implementation id="." version="1.13-post"/>
+    <implementation id="." version="2.0.2"/>
   </group>
 </interface>
