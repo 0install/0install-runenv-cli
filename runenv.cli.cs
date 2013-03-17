@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2012 Bastian Eicher
+ * Copyright 2006-2013 Bastian Eicher
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -39,23 +39,25 @@ public class RunEnv
         if (envName.EndsWith(".exe", true, CultureInfo.InvariantCulture)) envName = envName.Substring(0, envName.Length - 4);
 
         // Read environment variables
-        string envFile = Environment.GetEnvironmentVariable("0install-runenv-file-" + envName);
-        string envArgs = Environment.GetEnvironmentVariable("0install-runenv-args-" + envName);
+        string envFile = Environment.GetEnvironmentVariable("ZEROINSTALL_RUNENV_FILE_" + envName);
+        string envArgs = Environment.GetEnvironmentVariable("ZEROINSTALL_RUNENV_ARGS_" + envName);
         string userArgs = ConcatenateEscapeArgument(args);
 
         // Detect missing environment variables
         if (string.IsNullOrEmpty(envFile))
         {
-            Console.Error.WriteLine(string.Format("Environment variable '{0}' not set!", "0install-runenv-file-" + envName));
+            Console.Error.WriteLine(string.Format("Environment variable '{0}' not set!", "ZEROINSTALL_RUNENV_FILE_" + envName));
             return 1;
         }
 
         // Launch child process
         ProcessStartInfo startInfo = new ProcessStartInfo(envFile, string.IsNullOrEmpty(userArgs) ? envArgs : envArgs + " " + userArgs);
         startInfo.UseShellExecute = false;
-        Process process = Process.Start(startInfo);
-        process.WaitForExit();
-        return process.ExitCode;
+        using (Process process = Process.Start(startInfo))
+        {
+            process.WaitForExit();
+            return process.ExitCode;
+        }
     }
 
     #region StringUtils
