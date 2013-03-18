@@ -1,6 +1,7 @@
 <?xml version="1.0" ?>
 <?xml-stylesheet type='text/xsl' href='interface.xsl'?>
-<interface xmlns="http://zero-install.sourceforge.net/2004/injector/interface">
+<interface xmlns="http://zero-install.sourceforge.net/2004/injector/interface"
+           xmlns:compile="http://zero-install.sourceforge.net/2006/namespaces/0compile">
   <name>0install-runenv-cli</name>
   <summary>0install .NET helper for Windows</summary>
   <description>
@@ -13,7 +14,10 @@
   <feed-for interface="http://0install.net/2012/interfaces/0install-runenv-cli.xml"/>
   <category>System</category>
 
-  <group license="OSI Approved :: GNU Lesser General Public License (LGPL)">
+  <group license="OSI Approved :: GNU Lesser General Public License (LGPL)" arch='*-src'>
+    <command name='compile' shell-command='mcs "$SRCDIR/runenv.cli.cs" -out:"$DISTDIR/runenv.cli.template"'>
+      <compile:implementation arch='*-*'/>
+    </command>
     <implementation id="." version="2.0.2"/>
   </group>
 </interface>
