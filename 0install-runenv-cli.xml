@@ -17,6 +17,6 @@
     <command name="compile" shell-command="mcs &quot;$SRCDIR/runenv.cli.cs&quot; -out:&quot;$DISTDIR/runenv.cli.template&quot;">
       <compile:implementation arch="*-*"/>
     </command>
-    <implementation id="." released="2013-03-18" version="2.0.2"/>
+    <implementation id="." version="2.0.2-post"/>
   </group>
 </interface>
